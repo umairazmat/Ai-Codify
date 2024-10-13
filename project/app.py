@@ -9,10 +9,23 @@ from openai_client import (
 
 
 def main():
-    st.title("CodeMentor - (AI-Enhanced Code Collaboration Tool)")
-    st.subheader("Collaborate, Refactor, and Optimize with AI.")
+    # Title and Description
+    st.title("CodeMentor")
     st.write(
         "A smart tool for distributed teams to automate code reviews, refactor efficiently, and get real-time AI-driven feedback."
+    )
+
+    # Main Features Section
+    st.write("### Main Features:")
+    st.write(
+        """
+        - **Code Review**: Get AI-generated reviews to improve your code.
+        - **Code Refactoring**: Automatically refactor your code for better readability and efficiency.
+        - **Code Feedback**: Real-time feedback on code quality and potential improvements.
+        - **Best Practices Suggestions**: AI-driven suggestions tailored to your specific code.
+        - **Error Removal**: Identify and suggest fixes for errors in your code.
+        - **Downloadable Results**: Download reviews, refactored code, feedback, best practices, and error suggestions as text files.
+        """
     )
 
     # Instructions
