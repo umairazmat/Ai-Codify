@@ -2,7 +2,7 @@ import streamlit as st
 from openai_client import get_code_review_response
 
 def main():
-    st.title("AI-Enhanced Code Collaboration Tool")
+    st.title("CodeMentor - (AI-Enhanced Code Collaboration Tool)")
     st.subheader("Collaborate, Refactor, and Optimize with AI.")
     st.write("A smart tool for distributed teams to automate code reviews, refactor efficiently, and get real-time AI-driven feedback.")
 

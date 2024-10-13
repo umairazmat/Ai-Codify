@@ -1,8 +1,8 @@
-# Idea Crafter - AI-Powered Idea Generator
+# CodeMentor (AI-Powered Code Collaboration Tool)
 
 ## Description
 
-Idea Crafter is a web application that generates unique business ideas based on user input, leveraging OpenAI's GPT model. Users can specify an industry, problems they want to solve, desired impacts, and skills they wish to learn.
+A smart tool for distributed teams to automate code reviews, refactor efficiently, and get real-time AI-driven feedback.
 
 ## Getting Started
 
@@ -16,7 +16,7 @@ Idea Crafter is a web application that generates unique business ideas based on 
 ## Clone the repository:
 
 ```bash
-git clone https://github.com/HabibaSajid321/Replit-cursor-claude-hackathon-project
+git clone https://github.com/umairazmat/Ai-Codify
 cd Replit-cursor-claude-hackathon-project
 ```
 
@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 ```bash
 OPENAI_API_KEY=your_actual_api_key
-OPENAI_API_BASE=
+OPENAI_API_BASE=your_actual_api_key
 ```
 
 ## Run the application:
