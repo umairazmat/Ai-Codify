@@ -24,3 +24,24 @@ def get_code_review_response(prompt, max_tokens=1000):
         return response.choices[0].message.content
     except Exception as e:
         return "Sorry, an error occurred while generating your idea. Please try again later."
+
+# Function to refactor code
+def refactor_code(code_snippet):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-2024-08-06",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert code refactoring assistant.",
+                },
+                {
+                    "role": "user",
+                    "content": f"Refactor the following code. Do not provide any explanation or comments, just return the refactored code.\n{code_snippet}",
+                },
+            ],
+        )
+        refactored_code = response.choices[0].message.content
+        return refactored_code
+    except Exception as e:
+        return "Sorry, an error occurred while refactoring your code. Please try again later."
