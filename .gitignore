@@ -1,0 +1,5 @@
+.env
+__pycache__/
+ai-code-collaborator/Lib/
+ai-code-collaborator/Scripts/
+ai-code-collaborator
