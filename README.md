@@ -1,5 +1,8 @@
 # CodeMentor (AI-Powered Code Collaboration Tool)
 
+<img src="/public/Logo.png" >
+
+
 ## Description
 
 A smart tool for distributed teams to automate code reviews, refactor efficiently, and get real-time AI-driven feedback.
