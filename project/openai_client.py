@@ -88,3 +88,61 @@ def code_feedback(code_snippet):
 
     except Exception as e:
         return "Sorry, an error occurred while getting feedback on your code. Please try again later."
+
+
+# Function to suggest best coding practices based on given code
+def suggest_best_practices(code_snippet):
+    try:
+        response = anthropic_client.messages.create(
+            model="claude-3-5-sonnet-20240620",
+            max_tokens=1024,
+            messages=[
+                {
+                    "role": "user",
+                    "content": (
+                        f"Based on the following code, suggest best practices max 5-6 point shortly"
+                        f"for coding patterns that align with industry standards: \n{code_snippet}"
+                    ),
+                },
+            ],
+        )
+
+        # Extract suggestions from the response
+        best_practices = response.text if hasattr(response, "text") else str(response)
+
+        # Check if the feedback is a Message object and extract text if necessary
+        if hasattr(response, "content") and isinstance(response.content, list):
+            best_practices = "\n\n".join(
+                [
+                    text_block.text
+                    for text_block in response.content
+                    if hasattr(text_block, "text")
+                ]
+            )
+
+        return best_practices
+
+    except Exception as e:
+        return "Sorry, an error occurred while suggesting best practices. Please try again later."
+
+
+# Function to remove code errors
+def remove_code_errors(code_snippet):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert in debugging code. Provide concise suggestions to remove errors from the following code snippet.",
+                },
+                {
+                    "role": "user",
+                    "content": f"Identify and suggest fixes for errors in the following code:\n{code_snippet}",
+                },
+            ],
+        )
+        error_removal_suggestions = response.choices[0].message.content
+        return error_removal_suggestions
+    except Exception as e:
+        return "Sorry, an error occurred while removing code errors. Please try again later."

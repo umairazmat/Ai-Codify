@@ -1,5 +1,11 @@
 import streamlit as st
-from openai_client import get_code_review_response, refactor_code, code_feedback
+from openai_client import (
+    get_code_review_response,
+    refactor_code,
+    code_feedback,
+    suggest_best_practices,
+    remove_code_errors,
+)
 
 
 def main():
@@ -89,6 +95,52 @@ def main():
                 mime="text/plain",
             )
             st.success("You can download the code feedback as code_feedback.txt")
+
+    # Add button to suggest best practices
+    if st.button("Suggest Best Practices") and code:
+        with st.spinner("Getting best practices..."):
+            best_practices = suggest_best_practices(code)
+            st.subheader("Best Practices Suggestions:")
+            st.write(best_practices)
+
+            # Provide download option for best practices suggestions
+            best_practices_text = (
+                best_practices
+                if isinstance(best_practices, str)
+                else str(best_practices)
+            )
+            st.download_button(
+                label="Download Best Practices Suggestions",
+                data=best_practices_text,
+                file_name="best_practices.txt",
+                mime="text/plain",
+            )
+            st.success(
+                "You can download the best practices suggestions as best_practices.txt"
+            )
+
+    # Button to trigger error removal
+    if st.button("Remove Code Errors") and code:
+        with st.spinner("Removing errors from your code..."):
+            error_removal_suggestions = remove_code_errors(code)
+            st.subheader("Error Removal Suggestions:")
+            st.write(error_removal_suggestions)
+
+            # Provide download option for error removal suggestions
+            error_removal_text = (
+                error_removal_suggestions
+                if isinstance(error_removal_suggestions, str)
+                else str(error_removal_suggestions)
+            )
+            st.download_button(
+                label="Download Error Removal Suggestions",
+                data=error_removal_text,
+                file_name="error_removal_suggestions.txt",
+                mime="text/plain",
+            )
+            st.success(
+                "You can download the error removal suggestions as error_removal_suggestions.txt"
+            )
 
 
 if __name__ == "__main__":
