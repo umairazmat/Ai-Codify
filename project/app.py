@@ -1,5 +1,5 @@
 import streamlit as st
-from openai_client import get_code_review_response, refactor_code
+from openai_client import get_code_review_response, refactor_code, code_feedback
 
 
 def main():
@@ -70,6 +70,25 @@ def main():
                 mime="text/plain",
             )
             st.success("You can download the refactored code as refactored_code.txt")
+
+    # Button to trigger code feedback
+    if st.button("Get Code Feedback") and code:
+        with st.spinner("Getting feedback on your code..."):
+            feedback = code_feedback(code)
+            st.subheader("Code Feedback:")
+            st.write(feedback)
+
+            # Ensure feedback is a string for download
+            feedback_text = feedback if isinstance(feedback, str) else str(feedback)
+
+            # Provide download option for code feedback
+            st.download_button(
+                label="Download Code Feedback",
+                data=feedback_text,  # Use the extracted string here
+                file_name="code_feedback.txt",
+                mime="text/plain",
+            )
+            st.success("You can download the code feedback as code_feedback.txt")
 
 
 if __name__ == "__main__":
